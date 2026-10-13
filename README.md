@@ -15,7 +15,7 @@ Paradise Nursery is my final React project for the Coursera front-end course. It
 Install Node.js, then open a terminal in the project folder:
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -23,17 +23,24 @@ Open the local URL printed in the terminal.
 
 ## GitHub Pages
 
-Create a **public repository named `paradise-nursery`**. The Vite base path is configured for this exact name.
+Live app: https://bradleybeachoo-collab.github.io/paradise-nursery-/
+
+Deployment uses GitHub Actions in `.github/workflows/deploy.yml`. Every push to
+`main` installs the locked dependencies with `npm ci`, builds the Vite app and
+publishes `dist` to GitHub Pages. In **Settings > Pages**, the build source must
+be **GitHub Actions**.
+
+The Vite base is `/paradise-nursery-/`, matching the repository name including
+its final hyphen. `HashRouter` supports opening and refreshing all app routes.
+Plant images are original SVG illustrations in `public/plants`.
+
+To verify a production build locally:
 
 ```bash
-npm install
+npm ci
 npm run build
-npm run deploy
+npm run preview
 ```
-
-In GitHub repository Settings > Pages, set the source to **Deploy from a branch**, branch **gh-pages**, folder **/(root)**. The site will be at `https://YOUR-USERNAME.github.io/paradise-nursery/`.
-
-The project uses `HashRouter` so all three pages work when opened on GitHub Pages. The plant images are original simple SVG illustrations bundled with the project.
 
 ## Main files
 - `src/App.jsx`: landing page and routes
@@ -46,3 +53,20 @@ The project uses `HashRouter` so all three pages work when opened on GitHub Page
 
 ## Notes
 Prices are shown in Canadian dollars. Checkout is a demonstration only.
+
+## Coursera submission links
+
+Use the links requested by your submission form:
+
+| Item | Public link |
+| --- | --- |
+| Repository | [paradise-nursery-](https://github.com/bradleybeachoo-collab/paradise-nursery-) |
+| Deployed application | [Paradise Nursery](https://bradleybeachoo-collab.github.io/paradise-nursery-/) |
+| Product listing and Add to Cart | [ProductList.jsx](https://github.com/bradleybeachoo-collab/paradise-nursery-/blob/main/src/components/ProductList.jsx) |
+| Shopping cart and totals | [CartItem.jsx](https://github.com/bradleybeachoo-collab/paradise-nursery-/blob/main/src/components/CartItem.jsx) |
+| Redux cart actions | [CartSlice.jsx](https://github.com/bradleybeachoo-collab/paradise-nursery-/blob/main/src/redux/CartSlice.jsx) |
+| About the nursery | [AboutUs.jsx](https://github.com/bradleybeachoo-collab/paradise-nursery-/blob/main/src/components/AboutUs.jsx) |
+| Landing page and routes | [App.jsx](https://github.com/bradleybeachoo-collab/paradise-nursery-/blob/main/src/App.jsx) |
+| Styling | [App.css](https://github.com/bradleybeachoo-collab/paradise-nursery-/blob/main/src/App.css) |
+| Redux store | [store.js](https://github.com/bradleybeachoo-collab/paradise-nursery-/blob/main/src/redux/store.js) |
+| React entry point | [main.jsx](https://github.com/bradleybeachoo-collab/paradise-nursery-/blob/main/src/main.jsx) |
