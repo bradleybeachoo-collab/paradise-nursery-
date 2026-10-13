@@ -1,7 +1,33 @@
-import{createSlice}from'@reduxjs/toolkit';
-const slice=createSlice({name:'cart',initialState:{items:[]},reducers:{
-addItem(s,a){let x=s.items.find(x=>x.id===a.payload.id);if(x)x.quantity++;else s.items.push({...a.payload,quantity:1})},
-increaseQuantity(s,a){let x=s.items.find(x=>x.id===a.payload);if(x)x.quantity++},
-decreaseQuantity(s,a){let x=s.items.find(x=>x.id===a.payload);if(x){if(x.quantity>1)x.quantity--;else s.items=s.items.filter(x=>x.id!==a.payload)}},
-removeItem(s,a){s.items=s.items.filter(x=>x.id!==a.payload)}
-}});export const{addItem,increaseQuantity,decreaseQuantity,removeItem}=slice.actions;export default slice.reducer;
+import { createSlice } from '@reduxjs/toolkit';
+
+const cartSlice = createSlice({
+  name: 'cart',
+  initialState: { items: [] },
+  reducers: {
+    addItem(state, action) {
+      const item = state.items.find(item => item.id === action.payload.id);
+      if (item) {
+        item.quantity += 1;
+      } else {
+        state.items.push({ ...action.payload, quantity: 1 });
+      }
+    },
+    removeItem(state, action) {
+      state.items = state.items.filter(item => item.id !== action.payload);
+    },
+    updateQuantity(state, action) {
+      const { id, quantity } = action.payload;
+      if (!Number.isInteger(quantity) || quantity < 0) return;
+
+      if (quantity === 0) {
+        state.items = state.items.filter(item => item.id !== id);
+      } else {
+        const item = state.items.find(item => item.id === id);
+        if (item) item.quantity = quantity;
+      }
+    },
+  },
+});
+
+export const { addItem, removeItem, updateQuantity } = cartSlice.actions;
+export default cartSlice.reducer;
